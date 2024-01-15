@@ -21,7 +21,7 @@ const Login = () => {
 		if (!validEmail(email) || password.length < 8) return;
 		userservice.login({
 		  email: email,
-		  password: password
+		  password: password 
 		}).then(res => {
 		  router.push('/components/list');
 		  console.log(res);
