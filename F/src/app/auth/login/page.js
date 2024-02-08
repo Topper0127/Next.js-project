@@ -28,7 +28,22 @@ const Login = () => {
 		})
 	
 	  }
-	  
+		const googleLogin = useGoogleLogin({
+			onSuccess: (credentialRespose) => {
+			console.log(credentialRespose);
+			userservice.googleAuth({
+				credentialRespose
+			}).then((res) => {
+				toast.success("Login success by Google");
+				router.push('/components/list');
+			}).catch(err => {
+				console.log(err);
+				toast.error(err.response.data.message);
+			});
+			},
+			flow: 'auth-code',
+		});
+
 	return (
 		<div className='bg-white p-6 rounded-lg flex flex-col md:flex-row gap-6 w-5/6 md:w-[721px] m-auto'>
 			<div className='md:w-[246px] w-1/3'>
